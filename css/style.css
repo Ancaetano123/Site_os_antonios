@@ -781,6 +781,57 @@ ul { list-style: none; }
     color: var(--c-primary);
 }
 
+/* Esconde o conteúdo por defeito */
+.album-content-collapse {
+    display: none; 
+    padding-top: 20px;
+}
+
+/* Quando tiver a classe active, mostra */
+.album-content-collapse.active {
+    display: block;
+}
+
+/* Estilo para mostrar que o cabeçalho é clicável */
+.album-header-clickable {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.album-header-clickable:hover {
+    filter: brightness(1.1);
+}
+
+/* Cabeçalho como Flexbox */
+.album-header-clickable {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row; /* Alinha tudo numa linha */
+    justify-content: space-between; /* Empurra o conteúdo para as extremidades */
+    align-items: center;
+    position: relative;
+    padding: 20px 40px;
+}
+
+/* Seta (FontAwesome) */
+.album-header-clickable::after {
+    content: '\f078';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+    order: 2; /* Garante que fica à direita */
+}
+
+.album-header-clickable.closed::after {
+    transform: rotate(-90deg);
+}
+
+/* Garante que o conteúdo começa fechado */
+.album-content-collapse {
+    display: none; 
+}
+
 /* =====================================================
    EVENTOS
    ===================================================== */
