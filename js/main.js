@@ -480,6 +480,28 @@
         }
     };
 
+    /* «Continuar a ler» no telemóvel: textos longos mostram só o início */
+    (function () {
+        var telemovel = window.matchMedia('(max-width: 600px)');
+        cada('.historia .prosa, .santo .prosa', function (prosa) {
+            var paragrafos = prosa.querySelectorAll('p:not(.lede)');
+            if (paragrafos.length < 2) return;
+            var botao = document.createElement('button');
+            botao.type = 'button';
+            botao.className = 'continuar';
+            botao.innerHTML = 'Continuar a ler <svg aria-hidden="true"><use href="#i-baixo"/></svg>';
+            botao.addEventListener('click', function () {
+                prosa.classList.remove('resumida');
+                paragrafos[1].setAttribute('tabindex', '-1');
+                paragrafos[1].focus({ preventScroll: true });
+            });
+            paragrafos[0].insertAdjacentElement('afterend', botao);
+            function aplicar() { prosa.classList.toggle('resumida', telemovel.matches); }
+            aplicar();
+            if (telemovel.addEventListener) telemovel.addEventListener('change', aplicar);
+        });
+    })();
+
     /* Contagem dos números (85, 46, 1) quando aparecem */
     cada('[data-contar]', function (el) {
         var fim = +el.dataset.contar;

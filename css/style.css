@@ -1343,6 +1343,181 @@ svg.icones {
     .lb-seguinte { right: calc(50% - 64px); }
 }
 
+/* =====================================================
+   TELEMÓVEL — escala própria
+   Letra e espaços mais contidos, blocos compactos e textos
+   longos encurtados («Continuar a ler»), para dar vontade de ler.
+   ===================================================== */
+.so-pc { display: inline; }
+.continuar { display: none; }
+
+@media (max-width: 600px) {
+    :root { --nav-altura: 60px; --margem: 20px; }
+
+    body { font-size: 1rem; line-height: 1.62; }
+    .seccao { padding-block: 56px; }
+    .seccao h2 { font-size: 1.95rem; line-height: 1.1; margin-bottom: .4em; }
+    .lede { font-size: 1.06rem; line-height: 1.5; }
+    .cabecalho { margin-bottom: 26px; }
+    .prosa p + p { margin-top: .8em; }
+    .prosa .lede { margin-bottom: .9em; }
+    .sobretitulo { font-size: .76rem; margin-bottom: 8px; }
+    .botao { min-height: 46px; padding: 0 18px; font-size: .98rem; }
+    .so-pc { display: none; }
+
+    /* «Continuar a ler»: só os primeiros parágrafos, o resto abre com o botão */
+    .prosa.resumida > p:not(.lede) ~ p:not(.lede) { display: none; }
+    .prosa.resumida > p:not(.lede):first-of-type { position: relative; }
+    .continuar {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: 12px;
+        padding: 0;
+        border: 0;
+        background: none;
+        font-size: .95rem;
+        font-weight: 600;
+        color: var(--vinho);
+        text-decoration: underline;
+        text-decoration-color: var(--acafrao);
+        text-decoration-thickness: 2px;
+        text-underline-offset: 5px;
+    }
+    .continuar svg { width: 16px; height: 16px; }
+    .prosa:not(.resumida) .continuar { display: none; }
+
+    /* Barra de cima */
+    .nav-marca { font-size: 1.05rem; gap: 10px; }
+    .nav-marca img { width: 34px; height: 34px; }
+    .nav-links a { font-size: 1.6rem; }
+
+    /* Topo */
+    .hero-conteudo { padding: calc(var(--nav-altura) + 28px) var(--margem) 20px; }
+    .hero-logo { width: 56px; height: 56px; margin-bottom: 16px; border-width: 2px; }
+    .hero h1 { font-size: 3.05rem; letter-spacing: -0.03em; }
+    .hero h1::after { width: 72px; height: 4px; margin-top: 14px; }
+    .hero-lede { font-size: 1.02rem; margin-top: 14px; max-width: 30ch; }
+    .hero-acoes { margin-top: 22px; gap: 10px; flex-wrap: nowrap; }
+    .hero-acoes .botao { flex: 1 1 0; justify-content: center; padding: 0 10px; }
+    .hero-pausa { width: 38px; height: 38px; top: calc(var(--nav-altura) + 12px); }
+    .hero-proximo {
+        grid-template-columns: auto 1fr;
+        column-gap: 10px;
+        margin: 0 var(--margem) 22px;
+        padding: 14px 16px;
+    }
+    .proximo-titulo { font-size: .85rem; }
+    .proximo-data { font-size: 1.05rem; }
+    .proximo-dias { margin-top: 8px; padding-top: 8px; font-size: .9rem; }
+    .proximo-dias strong { font-size: 1.15rem; }
+
+    /* Hoje */
+    .hoje-topo { gap: 14px; }
+    .numeros { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 28px; border-top-width: 1px; }
+    .numeros li { flex-direction: column; gap: 2px; padding: 14px 8px 0 0; border-bottom: 0; }
+    .numeros strong { font-size: 2.3rem; }
+    .numeros li > span { font-size: .85rem; }
+    .fita { margin-top: 36px; }
+    .fita-pista { gap: 10px; }
+    .fita a { height: 150px; }
+    .sueca { margin-top: 40px; border-radius: 10px; }
+    .sueca-texto { padding: 22px 20px 26px; }
+    .sueca-naipes { font-size: 1.15rem; margin-top: 16px; }
+    .sueca h3 { font-size: 1.9rem; margin: 8px 0 10px; }
+    .sueca-texto p:not(.etiqueta):not(.sueca-naipes) { font-size: .95rem; }
+    .sueca-texto .botao { margin-top: 18px; }
+    .sueca-colagem { min-height: 220px; }
+
+    /* História */
+    .historia-grelha { gap: 36px; }
+    .cronologia h3 { font-size: 1.05rem; padding-bottom: 10px; }
+    .cronologia li { grid-template-columns: 5.6rem minmax(0, 1fr); gap: 10px; padding: 12px 0; }
+    .cronologia-ano { font-size: .9rem; }
+    .cronologia h4 { font-size: 1rem; }
+    .cronologia p { font-size: .9rem; }
+    .citacao { margin-top: 40px; }
+    .citacao p { font-size: 1.35rem; padding-left: 16px; border-left-width: 4px; }
+
+    /* Filme */
+    .filme-grelha { gap: 22px; }
+    .filme-play { width: 64px; height: 64px; }
+
+    /* Santo António */
+    .santo-grelha { gap: 26px; }
+    .santo-imagem { max-width: none; }
+    .santo-imagem img { aspect-ratio: 16 / 10; object-fit: cover; object-position: 50% 28%; }
+    .santo-imagem figcaption { font-size: .85rem; margin-top: 8px; }
+    .santo-datas { grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 24px; }
+    .santo-datas div { display: block; padding: 10px 8px 0 0; border-bottom: 0; }
+    .santo-datas dt { font-size: 1.3rem; min-width: 0; }
+    .santo-datas dd { font-size: .82rem; }
+
+    /* Galeria */
+    .galeria-topo { gap: 22px; }
+    .galeria-topo .cabecalho { margin-bottom: 18px; }
+    .abrir-galeria { width: 100%; justify-content: center; }
+    .evento-titulo { font-size: 1.6rem; margin-bottom: 18px; padding-bottom: 10px; }
+    .evento-titulo span:not(.etiqueta) { font-size: .9rem; }
+    .evento-galeria + .evento-galeria { margin-top: 48px; }
+    .album-cabecalho { margin-bottom: 12px; }
+    .album-cabecalho h4 { font-size: 1.1rem; }
+    .album-cabecalho p { font-size: .9rem; }
+    .mosaico { grid-auto-rows: 118px; gap: 6px; }
+    .ver-mais { min-height: 42px; font-size: .92rem; }
+    .filtro { min-height: 40px; padding: 0 16px; font-size: .92rem; }
+    .filtros { margin-bottom: 24px; }
+
+    /* Encontros */
+    .encontros-grelha { gap: 40px; }
+    .encontros h3 { font-size: 1.05rem; padding-bottom: 10px; }
+    .evento { grid-template-columns: 3.6rem minmax(0, 1fr); gap: 14px; padding: 16px 0; }
+    .evento-dia { font-size: 2rem; }
+    .evento-mes { font-size: .82rem; }
+    .evento-corpo h4 { font-size: 1.05rem; }
+    .evento-corpo p { font-size: .92rem; }
+    .evento-local { font-size: .88rem; }
+    .encontros .botao { width: 100%; justify-content: center; margin-top: 20px; }
+    .tradicoes dl > div { padding: 12px 0; }
+    .tradicoes dt { font-size: .92rem; }
+    .tradicoes dd { font-size: .92rem; }
+
+    /* Bandeira */
+    .bandeira-grelha { gap: 28px; }
+    .bandeira-duo { gap: 12px; }
+    .bandeira-duo figcaption { font-size: .88rem; margin-top: 8px; }
+
+    /* Reconhecimento: documentos numa fila que desliza com o dedo */
+    .reconhecimento .lede { font-size: .98rem; }
+    .subtitulo { font-size: 1.05rem; margin: 32px 0 16px; padding-top: 10px; }
+    .documentos {
+        display: flex;
+        gap: 14px;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scroll-padding-inline: var(--margem);
+        margin-inline: calc(-1 * var(--margem));
+        padding: 0 var(--margem) 8px;
+        scrollbar-width: none;
+    }
+    .documentos::-webkit-scrollbar { display: none; }
+    .documentos li { flex: 0 0 46%; scroll-snap-align: start; }
+    .doc-titulo { font-size: .9rem; margin-top: 10px; }
+    .doc-detalhe { font-size: .78rem; }
+    .media { gap: 28px; }
+    .media img { aspect-ratio: 16 / 9; margin-bottom: 10px; }
+    .media-fonte { font-size: .85rem; }
+    .media-titulo { font-size: 1.02rem; }
+    .media-texto { font-size: .9rem; }
+    .media-ligacao { font-size: .92rem; margin-top: 8px; }
+
+    /* Rodapé */
+    .rodape { font-size: .92rem; padding-top: 48px; }
+    .rodape-grelha { gap: 26px; }
+    .rodape-marca img { width: 52px; height: 52px; }
+    .rodape-fim { margin-top: 36px; font-size: .85rem; }
+}
+
 @media (prefers-reduced-motion: reduce) {
     *, *::before, *::after {
         transition-duration: .01ms !important;
