@@ -1,5 +1,7 @@
 # Site do Grupo «Os Antónios» de Celorico da Beira
 
+**Site publicado:** <https://ancaetano123.github.io/Site_os_antonios/>
+
 Site estático (HTML, CSS e JavaScript, sem compilação). Basta abrir `index.html` ou publicar a pasta num serviço como o GitHub Pages.
 
 ```
