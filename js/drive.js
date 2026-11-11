@@ -136,6 +136,8 @@
 
         var fig = document.createElement('figure');
         fig.className = 'foto';
+        // «grupo» no nome do ficheiro: entra no quadrado grande da montra
+        if (/grupo/.test(semAcentos(foto.name))) fig.dataset.grupo = '';
         var a = document.createElement('a');
         a.href = foto.grande || 'https://lh3.googleusercontent.com/d/' + id + '=w2000';
         a.dataset.legenda = legenda;

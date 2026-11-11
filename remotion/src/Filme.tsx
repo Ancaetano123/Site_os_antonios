@@ -311,7 +311,7 @@ const Media: React.FC = () => {
 	);
 };
 
-/* ---------- 10. Novo: Torneio de Sueca (só aparece se houver fotografias) ---------- */
+/* ---------- 10. Torneio de Sueca (só aparece se houver fotografias) ---------- */
 const Sueca: React.FC<{duracao: number}> = ({duracao}) => {
 	const frame = useCurrentFrame();
 	const {fps} = useVideoConfig();
@@ -329,7 +329,7 @@ const Sueca: React.FC<{duracao: number}> = ({duracao}) => {
 					<Naipes atraso={4} />
 					<div style={{height: 26}} />
 					<Linha atraso={10} style={{...texto, fontSize: 40, fontStyle: 'italic', color: cor.acafraoClaro}}>
-						Novo encontro do grupo
+						Convívio entre Antónios
 					</Linha>
 					<div style={{height: 10}} />
 					<Linha atraso={18} style={{...texto, fontSize: 140, fontWeight: 600, lineHeight: 1}}>

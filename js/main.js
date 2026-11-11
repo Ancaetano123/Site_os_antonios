@@ -324,11 +324,30 @@
         };
         nova.src = src;
     }
+    // Fotografias de grupo, com os Antónios todos juntos. A primeira fica no
+    // quadrado grande ao abrir a página; depois o quadrado grande só mostra estas.
+    // No Google Drive, uma fotografia com «grupo» no nome também entra aqui.
+    var FOTOS_DE_GRUPO = [
+        'images/miniaturas/historia/bandeira-tres-membros.webp',
+        'images/miniaturas/galeria/aniversarios/46-aniversario/jantar-brinde-bandeira.webp',
+        'images/miniaturas/historia/jantar-mesa-redonda-01.webp',
+        'images/miniaturas/galeria/aniversarios/46-aniversario/chegada-ermida.webp',
+        'images/miniaturas/historia/jantar-mesa-comprida-04.webp',
+        'images/miniaturas/historia/jantar-selfie-02.webp',
+        'images/miniaturas/historia/jantar-mesa-comprida-07.webp',
+        'images/miniaturas/historia/jantar-tres-antonios.webp'
+    ];
+    var grupoFila = [], grupoProxima = 1, trocas = 0;
+    function semRepetidas(l) { return l.filter(function (x, i) { return x && l.indexOf(x) === i; }); }
+
     function actualizarMontra() {
-        // Primeiro as fotografias recentes (fora de «Outros anos»), baralhadas; depois as antigas
+        var grupo = semRepetidas(FOTOS_DE_GRUPO.concat(fontesDe('.foto[data-grupo] img')));
+        grupoFila = [grupo[0]].concat(baralhar(grupo.slice(1)));
+        grupoProxima = 1;
+        // Quadrados pequenos: primeiro mais fotografias de grupo, depois as recentes, por fim as antigas
         var recentes = fontesDe('.evento-galeria:not([data-so-filtro]) .foto img');
         var antigas = fontesDe('.evento-galeria[data-so-filtro] .foto img');
-        montraFila = baralhar(recentes).concat(baralhar(antigas));
+        montraFila = semRepetidas(baralhar(grupo.slice(1)).concat(baralhar(recentes), baralhar(antigas)));
         if (montraFila.length < 9) return;
         if (montraPecas.length === 0) {
             for (var i = 0; i < 9; i++) {
@@ -342,13 +361,21 @@
             montra.hidden = false;
         }
         // Mostra já as primeiras nove da fila nova (ex.: quando chegam as fotos do Drive)
-        montraPecas.forEach(function (peca, i) { porNaPeca(peca, montraFila[i]); });
-        montraProxima = 9;
+        porNaPeca(montraPecas[0], grupoFila[0]);
+        for (var p = 1; p < 9; p++) porNaPeca(montraPecas[p], montraFila[p - 1]);
+        montraProxima = 8;
     }
     function trocarNaMontra() {
         if (montraFila.length <= 9) return;
+        trocas++;
+        // De quatro em quatro trocas, o quadrado grande passa à fotografia de grupo seguinte
+        if (trocas % 4 === 0 && grupoFila.length > 1) {
+            porNaPeca(montraPecas[0], grupoFila[grupoProxima % grupoFila.length]);
+            grupoProxima++;
+            return;
+        }
         var n;
-        do { n = Math.floor(Math.random() * 9); } while (n === montraUltima);
+        do { n = 1 + Math.floor(Math.random() * 8); } while (n === montraUltima);
         montraUltima = n;
         porNaPeca(montraPecas[n], montraFila[montraProxima % montraFila.length]);
         montraProxima++;
