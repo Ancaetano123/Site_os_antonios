@@ -23,7 +23,7 @@ A pasta `remotion/` gera, a partir das fotografias de `images/`:
 
 | Ficheiro | O que é | Código |
 |---|---|---|
-| `media/hero-loop.mp4`, `media/hero-loop-movel.mp4` | fundo animado do topo (24 s em loop) | `src/HeroLoop.tsx` |
+| `media/hero-loop.mp4`, `media/hero-loop-movel.mp4` | fundo animado do topo (24 s em loop; a versão móvel é ao alto, 9:16) | `src/HeroLoop.tsx` |
 | `media/hero-cartaz.jpg` | imagem que aparece enquanto o vídeo carrega | `src/HeroLoop.tsx` |
 | `media/filme-os-antonios.mp4` | filme «De 1980 até hoje» (cerca de 1 min 13 s, sem som; com fotos da Sueca fica mais longo) | `src/Filme.tsx` |
 | `media/filme-cartaz.jpg` | cartaz do filme | `src/Stills.tsx` |

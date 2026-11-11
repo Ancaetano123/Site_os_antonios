@@ -55,9 +55,14 @@ if (quer('hero')) {
 	const bruto = join(out, 'hero-loop.mp4');
 	remotion('render', 'src/index.ts', 'HeroLoop', bruto, '--crf=14', '--muted');
 	web(bruto, join(media, 'hero-loop.mp4'), 1920, 31);
-	web(bruto, join(media, 'hero-loop-movel.mp4'), 960, 30);
 	remotion('still', 'src/index.ts', 'HeroLoop', join(out, 'hero-cartaz.png'), '--frame=0');
 	ffmpeg('-i', join(out, 'hero-cartaz.png'), '-vf', 'scale=1600:-2', '-q:v', '4', join(media, 'hero-cartaz.jpg'));
+	// Telemóveis: vídeo e cartaz ao alto (9:16)
+	const brutoVertical = join(out, 'hero-loop-vertical.mp4');
+	remotion('render', 'src/index.ts', 'HeroLoopVertical', brutoVertical, '--crf=16', '--muted');
+	web(brutoVertical, join(media, 'hero-loop-movel.mp4'), 720, 30);
+	remotion('still', 'src/index.ts', 'HeroLoopVertical', join(out, 'hero-cartaz-movel.png'), '--frame=0');
+	ffmpeg('-i', join(out, 'hero-cartaz-movel.png'), '-vf', 'scale=720:-2', '-q:v', '4', join(media, 'hero-cartaz-movel.jpg'));
 	console.log(`hero-loop.mp4 ${tamanho(join(media, 'hero-loop.mp4'))}, móvel ${tamanho(join(media, 'hero-loop-movel.mp4'))}`);
 }
 

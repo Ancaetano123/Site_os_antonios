@@ -18,7 +18,8 @@
     <meta name="twitter:card" content="summary_large_image">
 
     <link rel="icon" href="images/logo.png" type="image/png">
-    <link rel="preload" as="image" href="media/hero-cartaz.jpg">
+    <link rel="preload" as="image" href="media/hero-cartaz.jpg" media="(min-width: 901px)">
+    <link rel="preload" as="image" href="media/hero-cartaz-movel.jpg" media="(max-width: 900px)">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -94,9 +95,13 @@
          Para o refazer: cd remotion && npm run render -- hero -->
     <section class="hero" id="topo">
         <div class="hero-media" aria-hidden="true">
-            <img class="hero-cartaz" src="media/hero-cartaz.jpg" alt="">
+            <!-- No telemóvel, cartaz e vídeo ao alto (9:16), para não cortar as pessoas. -->
+            <picture>
+                <source media="(max-width: 900px)" srcset="media/hero-cartaz-movel.jpg?v=2">
+                <img class="hero-cartaz" src="media/hero-cartaz.jpg" alt="">
+            </picture>
             <video class="hero-video" id="heroVideo" muted loop playsinline preload="none"
-                   data-src-grande="media/hero-loop.mp4" data-src-movel="media/hero-loop-movel.mp4"></video>
+                   data-src-grande="media/hero-loop.mp4?v=2" data-src-movel="media/hero-loop-movel.mp4?v=2"></video>
         </div>
         <div class="hero-veu"></div>
 
@@ -282,8 +287,8 @@
                     <p class="nota">Filme sem som, com pouco mais de um minuto.</p>
                 </div>
                 <figure class="filme-leitor revelar" id="filmeLeitor">
-                    <video id="filmeVideo" controls preload="none" playsinline poster="media/filme-cartaz.jpg">
-                        <source src="media/filme-os-antonios.mp4" type="video/mp4">
+                    <video id="filmeVideo" controls preload="none" playsinline poster="media/filme-cartaz.jpg?v=2">
+                        <source src="media/filme-os-antonios.mp4?v=2" type="video/mp4">
                         O seu navegador não reproduz vídeo. <a href="media/filme-os-antonios.mp4">Descarregar o filme</a>.
                     </video>
                     <button class="filme-play" id="filmePlay" type="button" aria-label="Ver o filme">
